@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if (( $2 >= $1 )); then #enough arguments
+	exit 0;
+fi; #else explanations
+
+if (( $# < 4 ))
+then 
+	{ echo "$0 takes at least 3 arguments : $0 num_of_arguments how_many_arguments calling_prog named_parameters"; exit; }; 
+fi
+
+caller=$2
+
+program=$(basename $3)
+echo "$program takes $1 argument(s) : "
+
+while [[ $3 ]]
+do
+	echo -n "$3 "
+	shift
+done
+echo 
+exit 1

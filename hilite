@@ -1,0 +1,19 @@
+#!/bin/bash
+# hilite 
+# usage : echo -hello- | hilite $green hello
+# having : export green=$(tput bold;tput setaf 2);
+
+# compile all rules given at command line to 1 set of rules for SED
+while [ "/$1/" != '//' ] ; do
+  # reset variables
+  color=''; regex=''; beep=''
+  # assign parameters from command line to variables and shift the rest
+  color=$1 ; regex="$2" ; shift 2
+  # add the substitute command to the set of rules for SED
+  # sedrules="$sedrules;s/\($regex\)/${!color}\1$normal/g"
+  sedrules="$sedrules;s/\($regex\)/$color\1$normal/g"
+done
+
+#echo $sedrules
+# call sed with the compiled sedrules to do the main job
+sed -e "$sedrules"
