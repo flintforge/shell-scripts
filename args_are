@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# example : 
+# args_are 3 $# $0 "path" "'file pattern'" "expression(s)" || exit
+
 if (( $2 >= $1 )); then #enough arguments
 	exit 0;
 fi; #else explanations
